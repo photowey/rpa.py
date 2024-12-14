@@ -1,3 +1,7 @@
+"""
+main module.
+"""
+
 # -*- coding:utf-8 -*-
 
 
@@ -19,6 +23,7 @@
 import baidu as bd
 
 
+# pylint: disable=C0116
 def main():
     bd.run()
 

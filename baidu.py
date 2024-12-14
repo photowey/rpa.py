@@ -1,3 +1,7 @@
+"""
+baidu module.
+"""
+
 # -*- coding:utf-8 -*-
 
 
@@ -16,9 +20,11 @@
 #  limitations under the License.
 
 
+# pylint: disable=W0614,W0401
 from init import *
 
 
+# pylint: disable=C0116
 def run():
     echo('----------------------------------------------------------------')
     echo('0:开始')

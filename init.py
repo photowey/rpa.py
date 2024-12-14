@@ -1,3 +1,7 @@
+"""
+init module.
+"""
+
 # -*- coding:utf-8 -*-
 
 
@@ -21,10 +25,12 @@ import os
 import rpa as robot
 
 
+# pylint: disable=C0116
 def utf8():
     os.system('chcp 65001')
 
 
+# pylint: disable=C0116
 def init_rpa():
     tagui_location = os.getenv('TAGUI_LOCATION')
     robot.tagui_location(tagui_location)
@@ -32,5 +38,6 @@ def init_rpa():
     robot.init()
 
 
+# pylint: disable=C0116
 def echo(message: str):
     robot.echo(message)
