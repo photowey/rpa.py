@@ -1,8 +1,7 @@
+# -*- coding:utf-8 -*-
 """
 main module.
 """
-
-# -*- coding:utf-8 -*-
 
 
 #  Copyright © 2024 the original author or authors.
@@ -20,12 +19,14 @@ main module.
 #  limitations under the License.
 
 
-import baidu as bd
+# import baidu as bd
+import admin as adm
 
 
 # pylint: disable=C0116
 def main():
-    bd.run()
+    # bd.run()
+    adm.run()
 
 
 if __name__ == '__main__':

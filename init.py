@@ -1,9 +1,7 @@
+# -*- coding:utf-8 -*-
 """
 init module.
 """
-
-# -*- coding:utf-8 -*-
-
 
 #  Copyright © 2024 the original author or authors.
 #
@@ -32,6 +30,8 @@ def utf8():
 
 # pylint: disable=C0116
 def init_rpa():
+    utf8()
+
     tagui_location = os.getenv('TAGUI_LOCATION')
     robot.tagui_location(tagui_location)
 
@@ -41,3 +41,8 @@ def init_rpa():
 # pylint: disable=C0116
 def echo(message: str):
     robot.echo(message)
+
+
+# pylint: disable=C0116
+def close():
+    robot.close()

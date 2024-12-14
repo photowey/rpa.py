@@ -11,4 +11,6 @@ $ pip freeze > requirements.txt
 $ pip install --ignore-installed --no-deps -r requirements.txt
 # If necessary
 $ pip install pylint
+
+$ pylint $(git ls-files '*.py')
 ```

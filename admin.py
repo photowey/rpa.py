@@ -1,8 +1,7 @@
 # -*- coding:utf-8 -*-
 """
-baidu module.
+admin module.
 """
-
 
 #  Copyright © 2024 the original author or authors.
 #
@@ -22,27 +21,55 @@ baidu module.
 # pylint: disable=W0614,W0401
 from init import *
 
+USERNAME = 'admin'
+PASSWORD = '123456'
+URL = 'http://localhost:8848'
+
+
+#
+# @see https://github.com/HalseySpicy/Geeker-Admin
+#
+
 
 # pylint: disable=C0116
 def run():
+    init_rpa()
+
     echo('----------------------------------------------------------------')
     echo('0:开始')
-    init_rpa()
     echo('----------------------------------------------------------------')
 
-    echo('1.访问: https://www.baidu.com')
-    robot.url('https://www.baidu.com')
-    echo('----------------------------------------------------------------')
-
-    echo('2.搜索: TagUI')
-    robot.type('//*[@id="kw"]', 'TagUI[enter]')
+    echo('1.访问: http://localhost:8848')
+    robot.url(URL)
     robot.wait()
     echo('----------------------------------------------------------------')
 
-    echo('3.快照: 当前搜索页')
-    robot.snap('page', 'baidu.png')
-    robot.wait()
+    echo('2.登录')
+    echo('2.1.输入: 账号')
+    robot.type('//*[@type="text"]', USERNAME)
+
+    echo('2.2.输入: 密码')
+    robot.type('//*[@type="password"]', PASSWORD)
+    echo('2.3.点击: 登录')
+    robot.click('//*[@id="app"]/div/div/div[3]/div[2]/button[2]')
     echo('----------------------------------------------------------------')
 
-    echo('4.退出')
-    robot.close()
+    echo('3.退出')
+    echo('3.1.点击: 头像')
+    robot.click('//*[@id="watermark"]/section/section/header/div[2]/div[2]/div/img')
+    robot.wait()
+
+    echo('3.2.点击: 退出登录')
+    # pylint: disable=C0301
+    logout_li = '//ul[contains(@class, "el-dropdown-menu")]/li[last()][contains(normalize-space(), "退出登录")]'
+    robot.click(logout_li)
+    robot.wait(1)
+
+    echo('3.3.点击: 确定')
+    robot.click('//*[@class="el-message-box__btns"]/button[2]')
+    robot.wait()
+
+    echo('----------------------------------------------------------------')
+
+    echo('5.结束')
+    close()
