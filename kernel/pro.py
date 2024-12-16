@@ -1,8 +1,7 @@
 # -*- coding:utf-8 -*-
 """
-main module.
+pro module.
 """
-
 
 #  Copyright © 2024 the original author or authors.
 #
@@ -17,17 +16,3 @@ main module.
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
-
-
-# import baidu as bd
-from samples import admin as adm
-
-
-# pylint: disable=C0116
-def main():
-    # bd.run()
-    adm.run()
-
-
-if __name__ == '__main__':
-    main()
