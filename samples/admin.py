@@ -81,20 +81,20 @@ def process_table(page_no: int, tr_index: int):
     page_index = page_no
     row_index = tr_index
     while True:
-        button_xpath = f'//table/tbody/tr[{row_index}]//button[contains(., "查看")]'
+        table_tr_button_xpath = f'//table/tbody/tr[{row_index}]//button[contains(., "查看")]'
 
-        if robot.exist(button_xpath):
-            echo(f"Clicking '查看' button on page {page_index} row {row_index}...")
-            robot.click(button_xpath)
+        if robot.exist(table_tr_button_xpath):
+            echo(f"--- 点击 {page_index} 页, 第 {row_index} 行的 '查看' 按钮 ---")
+            robot.click(table_tr_button_xpath)
 
             # 详情处理完了 -> 点击取消 -> 下一次 tr
             robot.click('取消')
             robot.wait(1)
-        else:
-            echo(f"No more rows to process on this page (stopped at row {row_index}).")
-            break
 
-        row_index += 1
+            row_index += 1
+        else:
+            echo(f"没有更多的数据行查看了(当前页码: {page_no}, 行号: {row_index - 1}).")
+            break
 
     # 遍历表格并处理分页
     while True:
@@ -151,5 +151,22 @@ def table():
 
     echo('----------------------------------------------------------------')
 
-    echo('4.结束')
+    echo('4.退出')
+    echo('4.1.点击: 头像')
+    robot.click('//*[@id="watermark"]/section/section/header/div[2]/div[2]/div/img')
+    robot.wait()
+
+    echo('4.2.点击: 退出登录')
+    # pylint: disable=C0301
+    logout_li = '//ul[contains(@class, "el-dropdown-menu")]/li[last()][contains(normalize-space(), "退出登录")]'
+    robot.click(logout_li)
+    robot.wait(1)
+
+    echo('4.3.点击: 确定')
+    robot.click('//*[@class="el-message-box__btns"]/button[2]')
+    robot.wait()
+
+    echo('----------------------------------------------------------------')
+
+    echo('5.结束')
     close()

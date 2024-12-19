@@ -3,7 +3,6 @@
 main module.
 """
 
-
 #  Copyright © 2024 the original author or authors.
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +25,8 @@ from samples import admin as adm
 # pylint: disable=C0116
 def main():
     # bd.run()
-    adm.run()
+    # adm.run()
+    adm.table()
 
 
 if __name__ == '__main__':
