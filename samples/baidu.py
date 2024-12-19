@@ -3,7 +3,6 @@
 baidu module.
 """
 
-
 #  Copyright © 2024 the original author or authors.
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,7 +19,7 @@ baidu module.
 
 
 # pylint: disable=W0614,W0401
-from init import *
+from samples.init import *
 
 
 # pylint: disable=C0116

@@ -19,7 +19,7 @@ admin module.
 
 
 # pylint: disable=W0614,W0401
-from init import *
+from samples.init import *
 
 USERNAME = 'admin'
 PASSWORD = '123456'
@@ -72,4 +72,84 @@ def run():
     echo('----------------------------------------------------------------')
 
     echo('5.结束')
+    close()
+
+
+# ----------------------------------------------------------------
+
+def process_table(page_no: int, tr_index: int):
+    page_index = page_no
+    row_index = tr_index
+    while True:
+        button_xpath = f'//table/tbody/tr[{row_index}]//button[contains(., "查看")]'
+
+        if robot.exist(button_xpath):
+            echo(f"Clicking '查看' button on page {page_index} row {row_index}...")
+            robot.click(button_xpath)
+
+            # 详情处理完了 -> 点击取消 -> 下一次 tr
+            robot.click('取消')
+            robot.wait(1)
+        else:
+            echo(f"No more rows to process on this page (stopped at row {row_index}).")
+            break
+
+        row_index += 1
+
+    # 遍历表格并处理分页
+    while True:
+        echo(f"处理分页, 当前页码: {page_no}...")
+
+        # 检查是否存在“下一页”按钮
+        next_page_xpath = "//button[@class='btn-next' and @aria-label='下一页']"
+        next_page_disabled_xpath = "//button[@class='btn-next' and @aria-label='下一页' and @disabled]"
+        if robot.exist(next_page_disabled_xpath):
+            echo(f"当前页码 {page_no} 已经是最后一页啦,我要退出了")
+            break
+
+        echo(f"点击: 下一页 {page_no + 1}...")
+        robot.click(next_page_xpath)
+        robot.wait(1)
+        process_table(page_no + 1, 1)
+
+
+# ----------------------------------------------------------------
+
+# pylint: disable=C0116
+def table():
+    init_rpa()
+
+    echo('----------------------------------------------------------------')
+    echo('0:开始')
+    echo('----------------------------------------------------------------')
+
+    echo('1.访问: http://localhost:8848')
+    robot.url(URL)
+    robot.wait()
+    echo('----------------------------------------------------------------')
+
+    echo('2.登录')
+    echo('2.1.输入: 账号')
+    robot.type('//*[@type="text"]', USERNAME)
+
+    echo('2.2.输入: 密码')
+    robot.type('//*[@type="password"]', PASSWORD)
+    echo('2.3.点击: 登录')
+    robot.click('//*[@id="app"]/div/div/div[3]/div[2]/button[2]')
+    echo('----------------------------------------------------------------')
+
+    echo('3.爬取表格')
+    echo('3.1.点击: 超级表格')
+    robot.click('超级表格')
+    echo('3.2.点击: 使用 ProTable')
+    robot.click('使用 ProTable')
+    echo('3.3.点击: 最后一页')
+    robot.click("//ul[@class='el-pager']/li[last()]")
+
+    echo('3.4.点击: 每行 `查看` 按钮')
+    process_table(200, 1)
+
+    echo('----------------------------------------------------------------')
+
+    echo('4.结束')
     close()
