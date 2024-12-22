@@ -41,6 +41,7 @@ def clipboard(text_to_put=None):
     return robot.clipboard(text_to_put)
 
 
+# pylint: disable=W0621
 def get_text(source_text=None, left=None, right=None, count=1) -> str:
     """return text between left & right markers"""
     return robot.get_text(source_text, left, right, count)

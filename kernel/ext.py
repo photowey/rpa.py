@@ -21,6 +21,7 @@ extension module.
 import rpa as robot
 
 
+# pylint: disable=W0622
 def input(input_element_identifier=None, value_to_input=None, test_coordinate=None):
     """enter text at input element"""
     return robot.type(input_element_identifier, value_to_input, test_coordinate)

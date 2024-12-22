@@ -46,21 +46,25 @@ def hover(element_identifier=None, test_coordinate=None):
     return robot.hover(element_identifier, test_coordinate)
 
 
+# pylint: disable=W0622
 def type(element_identifier=None, text_to_type=None, test_coordinate=None):
     """enter text at element"""
     return robot.type(element_identifier, text_to_type, test_coordinate)
 
 
+# pylint: disable=C0301
 def select(element_identifier=None, option_value=None, test_coordinate1=None, test_coordinate2=None):
     """choose dropdown option"""
     return robot.select(element_identifier, option_value, test_coordinate1, test_coordinate2)
 
 
+# pylint: disable=C0301
 def read(element_identifier=None, test_coordinate1=None, test_coordinate2=None, test_coordinate3=None):
     """return element text"""
     return robot.read(element_identifier, test_coordinate1, test_coordinate2, test_coordinate3)
 
 
+# pylint: disable=C0301
 def snap(element_identifier=None, filename_to_save=None, test_coord1=None, test_coord2=None, test_coord3=None):
     """save screenshot to file"""
     return robot.snap(element_identifier, filename_to_save, test_coord1, test_coord2, test_coord3)

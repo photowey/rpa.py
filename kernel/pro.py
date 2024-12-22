@@ -64,6 +64,7 @@ def table(element_identifier=None, filename_to_save=None):
     return robot.table(element_identifier, filename_to_save)
 
 
+# pylint: disable=W0622
 def bin(file_to_bin=None, password=None, server='https://tebel.org/bin/'):
     """secure temporary storage"""
     return robot.bin(file_to_bin, password, server)
@@ -96,6 +97,7 @@ def frame(main_frame=None, sub_frame=None):
     return robot.frame(main_frame, sub_frame)
 
 
+# pylint: disable=C0301
 def popup(string_in_url=None):
     """
     set context to web popup tab \n
