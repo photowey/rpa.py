@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 """
-scheduler package.
+scheduler module.
 """
 
 #  Copyright © 2024 the original author or authors.
