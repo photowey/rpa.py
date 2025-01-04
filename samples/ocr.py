@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 """
-init module.
+ocr module.
 """
 
 #  Copyright © 2024 the original author or authors.
@@ -18,35 +18,19 @@ init module.
 #  limitations under the License.
 
 
-import os
-
-import rpa as robot
-
-
-# pylint: disable=C0116
-def utf8():
-    """urf8"""
-    os.system('chcp 65001')
+# pylint: disable=W0614,W0401
+from samples.init import *
 
 
 # pylint: disable=C0116
-def init_rpa(visual_automation=False, chrome_browser=True, headless_mode=False, turbo_mode=False):
-    """init_rpa"""
-    utf8()
+def run():
+    echo('----------------------------------------------------------------')
+    init_rpa(visual_automation=True, chrome_browser=False)
+    echo('----------------------------------------------------------------')
 
-    tagui_location = os.getenv('TAGUI_LOCATION')
-    robot.tagui_location(tagui_location)
+    # robot.dclick(30, 35)
+    robot.dclick('Recycler.png')
 
-    robot.init(visual_automation, chrome_browser, headless_mode, turbo_mode)
+    echo('----------------------------------------------------------------')
 
-
-# pylint: disable=C0116
-def echo(message: str):
-    """echo message"""
-    robot.echo(message)
-
-
-# pylint: disable=C0116
-def close():
-    """close rpa"""
     robot.close()

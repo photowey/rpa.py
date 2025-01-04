@@ -19,14 +19,16 @@ main module.
 
 
 # import baidu as bd
-from samples import admin as adm
+# from samples import admin as adm
+from samples import ocr
 
 
 # pylint: disable=C0116
 def main():
     # bd.run()
     # adm.run()
-    adm.table()
+    # adm.table()
+    ocr.run()
 
 
 if __name__ == '__main__':
